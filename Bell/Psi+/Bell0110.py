@@ -22,3 +22,14 @@ qc.draw()
 
 #Transpile the circuit
 qct=transpile(qc,backend)
+
+#Execute the circuit with 4096 shots. Must be executed from a node with a QPU.
+job=backend.run(qct,shots=4096)
+
+#Return the results
+print("Job enviado... esperando resultados")
+
+result = job.result()
+
+counts = result.get_counts(qc)
+print("QmioBackend Counts:", counts)
